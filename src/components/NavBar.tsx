@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { DarkModeToggle } from './DarkModeToggle';
 
 export const Navbar = () => {
   return (
@@ -7,6 +8,7 @@ export const Navbar = () => {
         <h1 className="text-xl font-bold">🌍 Country Dashboard</h1>
         <ul className="flex space-x-4">
           <li><Link to="/" className="hover:underline">Home</Link></li>
+          <DarkModeToggle />
         </ul>
       </div>
     </nav>
