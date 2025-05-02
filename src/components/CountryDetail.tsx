@@ -1,6 +1,5 @@
 import { useParams } from 'react-router-dom';
 import { useFetchCountries } from '../hooks/useFetchCountries';
-import { Country } from '../types/country';
 
 export const CountryDetailPage = () => {
   const { name } = useParams<{ name: string }>();
