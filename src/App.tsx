@@ -1,36 +1,40 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Toaster } from 'react-hot-toast';
-import Layout from './components/layout/Layout';
-import HomePage from './pages/HomePage';
-import AuthPage from './pages/AuthPage';
-import DashboardPage from './pages/DashboardPage';
-import CoursesPage from './pages/CoursesPage';
-import CourseDetailPage from './pages/CourseDetailPage';
-import TutorsPage from './pages/TutorsPage';
-import TutorProfilePage from './pages/TutorProfilePage';
-import NotFoundPage from './pages/NotFoundPage';
-import { AuthProvider } from './context/AuthContext';
+import React, { useState } from 'react';
+import './index.css';
+import { useFetchCountries } from './hooks/useFetchCountries';
+import { CountryList } from './components/CountryList';
+import { CountryDetail } from './components/CountryDetail';
+import { SearchBar } from './components/SearchBar';
+import { filterCountries } from './utils/filterCountries';
 
 function App() {
+  const { countries, loading, error } = useFetchCountries();
+  const [selectedCountry, setSelectedCountry] = useState<any>(null);
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredCountries = filterCountries(countries, searchTerm);
+
+  if (loading) return <div className="text-center p-8 text-xl">Loading countries...</div>;
+  if (error) return <div className="text-center text-red-500 p-8">Error: {error}</div>;
+
   return (
-    <AuthProvider>
-      <Router>
-        <Toaster position="top-center" />
-        <Routes>
-          <Route path="/" element={<Layout />}>
-            <Route index element={<HomePage />} />
-            <Route path="auth" element={<AuthPage />} />
-            <Route path="dashboard" element={<DashboardPage />} />
-            <Route path="courses" element={<CoursesPage />} />
-            <Route path="courses/:id" element={<CourseDetailPage />} />
-            <Route path="tutors" element={<TutorsPage />} />
-            <Route path="tutors/:id" element={<TutorProfilePage />} />
-            <Route path="*" element={<NotFoundPage />} />
-          </Route>
-        </Routes>
-      </Router>
-    </AuthProvider>
+    <div className="min-h-screen bg-gray-100 p-6">
+      <div className="max-w-7xl mx-auto">
+        <h1 className="text-4xl font-bold text-center mb-8 text-blue-700">🌍 Country Info Dashboard</h1>
+
+        <div className="mb-6">
+          <SearchBar onSearch={setSearchTerm} />
+        </div>
+
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="md:w-2/3">
+            <CountryList countries={filteredCountries} onSelectCountry={setSelectedCountry} />
+          </div>
+          <div className="md:w-1/3">
+            <CountryDetail country={selectedCountry} />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
