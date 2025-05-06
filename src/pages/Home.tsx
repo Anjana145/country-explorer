@@ -1,5 +1,6 @@
 import { useFetchCountries } from '../hooks/useFetchCountries';
 import { RandomPopulationChart } from '../components/RandomPopulationChart';
+import { NewsPage } from '../components/CountryNewsSection';
 export const Home = () => {
   const { countries, loading, error } = useFetchCountries();
   // Calculate stats
@@ -56,9 +57,10 @@ export const Home = () => {
       </section>
 
       <RandomPopulationChart allCountries={countries} />
+      <NewsPage/>
 
       {/* Main Content Layout */}
-      <div className="container mx-auto py-6 px-4 flex flex-col md:flex-row gap-8">
+      <div className="container justify-center mx-auto py-6 px-4 flex flex-col md:flex-row gap-8">
         {/* CTA Section */}
         <section className="text-center my-10">
           <h2 className="text-2xl font-bold mb-4">Want More Info?</h2>
