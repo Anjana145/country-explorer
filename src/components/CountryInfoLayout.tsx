@@ -84,15 +84,6 @@ export const CountryInfoLayout = () => {
             totalPages={totalPages}
             onPageChange={setCurrentPage}
           />
-
-          {/* CTA Section */}
-          <section className="text-center my-10">
-            <h2 className="text-2xl font-bold mb-4">Want More Info?</h2>
-            <p className="mb-4">Browse all countries or dive into detailed charts.</p>
-            <a href="/about" className="inline-block bg-blue-600 text-white px-6 py-2 rounded hover:bg-blue-700 transition">
-              Learn About This Site
-            </a>
-          </section>
         </div>
       </div>
     </div>
