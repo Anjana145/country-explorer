@@ -1,19 +1,32 @@
 import { useNavigate } from 'react-router-dom';
-import { CountryList } from './CountryList';
+import { CountryList } from '../components/CountryList';
 import { useFetchCountries } from '../hooks/useFetchCountries';
 import { Country } from '../types/country';
-import { RegionSidebar } from './RegionSidebar';
+import { RegionSidebar } from '../components/RegionSidebar';
 import { useState } from 'react';
+// At the top
+import { Pagination } from '../components/Pagination';
+
+// Inside your JSX, replace the old buttons with:
 
 export const Home = () => {
   const navigate = useNavigate();
   const { countries, loading, error } = useFetchCountries();
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const countriesPerPage = 10;
 
-  // Filter countries based on selected region
+  // Filter by region
   const filteredCountries = selectedRegion
     ? countries.filter((country) => country.region === selectedRegion)
     : countries;
+
+  // Pagination logic
+  const totalPages = Math.ceil(filteredCountries.length / countriesPerPage);
+  const paginatedCountries = filteredCountries.slice(
+    (currentPage - 1) * countriesPerPage,
+    currentPage * countriesPerPage
+  );
 
   const handleSelectCountry = (country: Country) => {
     navigate(`/country/${country.name.common}`);
@@ -34,7 +47,14 @@ export const Home = () => {
         <h2 className="text-2xl font-bold mb-4">
           {selectedRegion ? `${selectedRegion} Countries` : 'All Countries'}
         </h2>
-        <CountryList countries={filteredCountries} onSelectCountry={handleSelectCountry} />
+        <CountryList countries={paginatedCountries} onSelectCountry={handleSelectCountry} />
+
+        {/* Pagination Controls */}
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
       </div>
     </div>
   );

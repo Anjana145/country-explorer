@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home } from './components/Home';
+import { Home } from './pages/Home';
 import { CountryDetail} from './components/CountryDetail';
 import { Navbar } from './components/NavBar';
 export const AppRouter = () => {
