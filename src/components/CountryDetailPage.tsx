@@ -3,7 +3,7 @@ import { CountryDetail } from "./CountryDetail";
 import { Navbar } from "./NavBar";
 import { Footer } from "./Footer";
 import { CountryMap } from "./CountryMap";
-import { PopulationChart, PopulationChartProps } from "./PopulationChart";
+import { PopulationChart } from "./PopulationChart";
 
 // Define types
 type Country = {
