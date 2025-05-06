@@ -7,6 +7,9 @@ export const Navbar = () => {
         <h1 className="text-xl font-bold">🌍 Country Dashboard</h1>
         <ul className="flex space-x-4">
           <li><Link to="/" className="hover:underline">Home</Link></li>
+          <li><Link to="/about" className="hover:underline">About</Link></li>
+          <li><Link to="/Country-info" className="hover:underline">CountryInfoLayout</Link></li>
+
         </ul>
       </div>
     </nav>
