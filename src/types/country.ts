@@ -1,7 +1,7 @@
 export type Country = {
     name:{
         common: string;
-        official: string;
+        official?: string;
     };
     region: string;
     subregion: string;
@@ -14,4 +14,5 @@ export type Country = {
     capital?: string[];
     languages: Record<string, string>;
     currencies: Record<string, {name:string;symbol:string}>;
+    incomeLevel?: string;
 }

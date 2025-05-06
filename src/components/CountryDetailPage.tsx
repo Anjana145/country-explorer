@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { CountryDetail } from "./CountryDetail";
 import { Navbar } from "./NavBar";
 import { Footer } from "./Footer";
-import { CountryMap } from "./CountryMap";
-import { PopulationChart } from "./PopulationChart";
 
 // Define types
 type Country = {
@@ -74,11 +72,6 @@ export const CountryDetailPage = () => {
             <CountryDetail />
           </div>
 
-          {/* Right: Map + Population Chart */}
-          <div className="md:w-1/2 space-y-6">
-            <CountryMap />
-            <PopulationChart country={country} allCountries={allCountries} />
-          </div>
         </div>
       </main>
       <Footer />

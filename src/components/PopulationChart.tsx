@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import {
   Chart as ChartJS,
@@ -6,23 +7,19 @@ import {
   BarElement,
   Title,
   Tooltip,
-  Legend,
 } from 'chart.js';
+import { Country } from '../types/country';
 
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip);
 
-export type PopulationChartProps = {
-  country: {
-    name: { common: string };
-    population: number;
-  } | null;
-  allCountries: { name: { common: string }; population: number }[];
-};
+interface PopulationChartProps {
+  countries: Country[];
+}
 
-export const PopulationChart = ({ country, allCountries }: PopulationChartProps) => {
-  if (!country) return null;
-
-  const topCountries = [...allCountries]
+export const PopulationChart: React.FC<PopulationChartProps> = ({ countries }) => {
+  const [selectedRegion, setSelectedRegion] = useState<string>('');
+  // Sort and get top 5 most populous countries
+  const topCountries = [...countries]
     .sort((a, b) => b.population - a.population)
     .slice(0, 5);
 
@@ -43,15 +40,19 @@ export const PopulationChart = ({ country, allCountries }: PopulationChartProps)
   };
 
   const options = {
-    responsive: true,
     plugins: {
-      legend: { display: false },
       title: {
         display: true,
-        text: `Top Populated Countries vs ${country.name.common}`,
+        text: selectedRegion
+          ? `Top 5 Populated Countries in ${selectedRegion}`
+          : `Top 5 Populated Countries Worldwide`,
       },
     },
   };
 
-  return <Bar data={data} options={options} />;
+  return (
+    <div style={{ height: '400px', width: '100%' }}>
+      <Bar data={data} options={options} />
+    </div>
+  );
 };
