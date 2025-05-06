@@ -6,6 +6,7 @@ import ChartPage from './components/ChartPage';
 import { AboutPage } from './components/AboutUs';
 import { CountryInfoLayout } from './components/CountryInfoLayout';
 import { Footer } from './components/Footer';
+import { NewsPage } from './components/CountryNewsSection';
 export const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -17,6 +18,7 @@ export const AppRouter = () => {
           <Route path="/chart" element={<ChartPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/country-info" element={<CountryInfoLayout />} />
+          <Route path="/news" element={<NewsPage/>} />
 
         </Routes>
       </main>
