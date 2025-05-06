@@ -11,6 +11,7 @@ export type Country = {
         svg: string;
         png: string;
     };
+    description:string;
     capital?: string[];
     languages: Record<string, string>;
     currencies: Record<string, {name:string;symbol:string}>;
