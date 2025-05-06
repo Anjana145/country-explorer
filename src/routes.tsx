@@ -4,6 +4,8 @@ import { CountryDetail} from './components/CountryDetail';
 import { Navbar } from './components/NavBar';
 import ChartPage from './components/ChartPage';
 import { AboutPage } from './components/AboutUs';
+import { CountryInfoLayout } from './components/CountryInfoLayout';
+import { Footer } from './components/Footer';
 export const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -14,8 +16,11 @@ export const AppRouter = () => {
           <Route path="/country/:name" element={<CountryDetail />} />
           <Route path="/chart" element={<ChartPage />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/country-info" element={<CountryInfoLayout />} />
+
         </Routes>
       </main>
+      <Footer/>
     </BrowserRouter>
   );
 };
