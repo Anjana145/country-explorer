@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useFetchCountries } from '../hooks/useFetchCountries';
 
-export const CountryDetailPage = () => {
+export const CountryDetail = () => {
   const { name } = useParams<{ name: string }>();
   const { countries, loading, error } = useFetchCountries();
 

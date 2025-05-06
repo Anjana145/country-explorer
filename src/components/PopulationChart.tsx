@@ -11,7 +11,7 @@ import {
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
-type PopulationChartProps = {
+export type PopulationChartProps = {
   country: {
     name: { common: string };
     population: number;
