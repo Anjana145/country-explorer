@@ -10,7 +10,6 @@ import { PopulationChart } from '../components/PopulationChart';
 export const CountryInfoLayout = () => {
   const navigate = useNavigate();
   const { countries, loading, error } = useFetchCountries();
-
   const [selectedRegion, setSelectedRegion] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [currentPage, setCurrentPage] = useState(1);
