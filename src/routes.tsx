@@ -3,6 +3,7 @@ import { Home } from './pages/Home';
 import { CountryDetail} from './components/CountryDetail';
 import { Navbar } from './components/NavBar';
 import ChartPage from './components/ChartPage';
+import { AboutPage } from './components/AboutUs';
 export const AppRouter = () => {
   return (
     <BrowserRouter>
@@ -12,7 +13,7 @@ export const AppRouter = () => {
           <Route path="/" element={<Home />} />
           <Route path="/country/:name" element={<CountryDetail />} />
           <Route path="/chart" element={<ChartPage />} />
-          
+          <Route path="/about" element={<AboutPage />} />
         </Routes>
       </main>
     </BrowserRouter>
